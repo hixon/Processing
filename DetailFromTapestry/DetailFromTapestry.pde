@@ -84,53 +84,14 @@ for (y = 0; y<150; y+=10){
       square(x, y, xSize, ySize, 1);
     }
     
-    //fifteenth
-    //else if(y == 140 && (x == 0 || x == 10 || x == 40 || x == 50 || x == 60 || x == 100 || x == 110 || x == 120 || x == 140)){
-    //  square(x, y, xSize, ySize, 1);
-    //}
-    
     else{
      square (x, y, xSize, ySize, 0); 
     }
   }
   x=0;
 }
-/*
-square(x, y, xSize, ySize, 0);
-square(x+10, y, xSize, ySize, 0);
-square(x+20, y, xSize, ySize, 0);
-square(x+30, y, xSize, ySize, 1);
-square(x+40, y, xSize, ySize, 1);
-square(x+50, y, xSize, ySize, 0);
-*/
-}
-//row one
-/*
-for (x = 0; x<100; x+=10){
-  for (y = 0; y<150; y+=10){
-  rect(x, y, xSize, ySize);
-  }
-  y = 0;
-}
-*/
-//row2
-//row3
-//row4
-//row5
-//row6
-//row7
-//row8
-//row9
-//row10
-//row11
-//row12
-//row13
-//row14
-//ro215
-//for (x = 0; x<100; x+=10){
-//  rect(x, 140, 10, 10); 
-//}
 
+}//ends draw method
 
 //function for creating a square 
 // parameters will be the x, y, xSize, ySize, white
