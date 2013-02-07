@@ -1,5 +1,10 @@
 this is for the seinfeld graph, currently a work in progress. will update with more information later
 
+RECENTLY WORKED ON:
+	- updated the code so that the character information displays in a text box at the top left of the UI, might change this later but for now it works fine. 
+	- added the line for an episode need to do some testing on displaying more than one line and also add events to it so that when you hover over the line or click on the line the 
+		episode information will display in another corner of the display. 
+
 WORKING ON:
 	- figuring out a good way to store the names, right now I have them in an array, maybe use an arrayList of arrays each item in the arrayList will be a show holding the info of all characters
 	- best way to display the characeters on the line tha represents the length of the episode, need it to be something more informative b/c the length of the episode will be something like 30+ minutes 
