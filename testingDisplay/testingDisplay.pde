@@ -23,7 +23,7 @@ void draw(){
   chars.add(Kramer);
   chars.add(Other);
   
-  episode first = new episode (1, 1, "The Pick", 240, 250, chars);
+  episode first = new episode (1, 1, "The Pick", 240, 250, 32.5, chars);
   
   chars = new ArrayList();
   Jerry = new character("Jerry", 8.5, 1.22, 255, 0, 0);
@@ -37,7 +37,7 @@ void draw(){
   chars.add(Kramer);
   chars.add(Other);
   
-  episode sec = new episode (1, 2, "The Test", 260, 250, chars);
+  episode sec = new episode (1, 2, "The Test", 260, 250, 35, chars);
   //episode three = new episode (1, 3, "The Soup Nazi", 280, 250);
   //episode four = new episode (1, 4, "The Pilot", 300, 250);
   //episode five = new episode (1, 5, "The Pen", 320, 250);
@@ -56,14 +56,17 @@ void draw(){
   int y = 0;
   int step = width/test.size();
   int start = 50;
+  float showSize = 0;
   for (x=0; x<test.size(); x++){
     curr = (episode) test.get(x);
+    showSize = curr.showLen();
+    curr.display(start, showSize);
+    
     for (y = 0; y < curr.getSize(); y++){
       now = (character) curr.getChar(y);
       now.display(start);
       now.inFocus(start);
     }
-    curr.display(start);
     start += step;
   }
 }
@@ -75,13 +78,15 @@ class episode {
   private int x;
   private int y;
   private ArrayList cast;
+  private float len;
   
-  episode (int season, int number, String title, int x, int y, ArrayList cast){
+  episode (int season, int number, String title, int x, int y, float len, ArrayList cast){
     this.season = season;
     this.number = number;
     this.title = title;
     this.x = x;
     this.y = y;  
+    this.len = len;
     this.cast = cast;
   } 
   
@@ -93,8 +98,9 @@ class episode {
     y = 0; 
   }
   
-  void display(int startX){
-    rect(startX, y, 3, 30); 
+  void display(int startX, float episodeSize){
+    fill(0);
+    rect(startX+2.0, y*1.0, 2.0, episodeSize * (-2.0)); 
   }
   
   void showText(){
@@ -112,6 +118,10 @@ class episode {
   Object getChar(int x){
      return cast.get(x); 
   }
+  
+  float showLen(){
+   return len;
+  }
 }
 
 class character{
@@ -122,6 +132,10 @@ class character{
   private int G;
   private int B;
   
+  //this variable can probably be a constant, if changed the size of the squares will change
+  private int blockSize = 6;
+  
+  //main constructor method to create each character
   character (String name, float onScreen, float longestTime, int R, int G, int B){
    this.name = name;
    this.onScreen = onScreen;
@@ -131,7 +145,8 @@ class character{
    this.B = B;
  } 
  
-   character(){
+  //this is used when nothing is called
+  character(){
       name = "";
       onScreen = 0;
       longestTime = 0;
@@ -143,16 +158,19 @@ class character{
  //used to draw the square on the line
  void display(int Xlocation){
    fill(R, G, B);
-   rect(Xlocation, ((height/2.0) - (onScreen * 4)), 5, 5);
+   rect(Xlocation, ((height/2.0) - (onScreen * 4)), blockSize, blockSize);
  }
  
  void inFocus(int xLocation){
    //display the name, time on screen, and longest scene if in the box
-   //if (mouseX >= ((width/2.0) - 2.5) && mouseX <= ((width/2.0) + 2.5) && mouseY >= (((height/2.0) - (onScreen * 4)) - 5) && mouseY <= (((height/2.0) - (onScreen * 4)) + 5)){
-   if (mouseX >= (xLocation - 2.5) && mouseX <= (xLocation + 2.5) && mouseY >= (((height/2.0) - (onScreen * 4)) - 5) && mouseY <= (((height/2.0) - (onScreen * 4)) + 5)){  
+   if (mouseX >= (xLocation) && mouseX <= (xLocation + blockSize) && mouseY >= (((height/2.0) - (onScreen * 4))) && mouseY <= (((height/2.0) - (onScreen * 4)) + blockSize)){  
      println(name);
      updateText();
    }
+   //THE ELSE CASE WAS ONLY USED FOR TESTING OTHERWISE IT WILL CONTINUTE TO PRINT THE (X,Y) LOCATION
+   //else{
+   //   println("x: " + mouseX + " y: " + mouseY); 
+   //}
  }
  
  void updateText(){
