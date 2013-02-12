@@ -24,7 +24,20 @@ void draw(){
   chars.add(Other);
   
   episode first = new episode (1, 1, "The Pick", 240, 250, chars);
-  //episode sec = new episode (1, 2, "The Test", 260, 250);
+  
+  chars = new ArrayList();
+  Jerry = new character("Jerry", 8.5, 1.22, 255, 0, 0);
+  George = new character("George", 5.2, 0.66, 0, 255, 0);
+  Elaine = new character ("Elaine", 12.3, 2.22, 0, 0, 255);
+  Kramer = new character ("Kramer", 9.5, 4.5, 100, 100, 0);
+  Other = new character ("Other", 15.88, 2, 0, 50, 100);
+  chars.add(Jerry);
+  chars.add(George);
+  chars.add(Elaine);
+  chars.add(Kramer);
+  chars.add(Other);
+  
+  episode sec = new episode (1, 2, "The Test", 260, 250, chars);
   //episode three = new episode (1, 3, "The Soup Nazi", 280, 250);
   //episode four = new episode (1, 4, "The Pilot", 300, 250);
   //episode five = new episode (1, 5, "The Pen", 320, 250);
@@ -34,21 +47,24 @@ void draw(){
   
   ArrayList test = new ArrayList();
   test.add(first);
-  //test.add(sec);
+  test.add(sec);
   //test.add(three);
   //test.add(four);
   //test.add(five);
     
   int x = 0;
   int y = 0;
+  int step = width/test.size();
+  int start = 50;
   for (x=0; x<test.size(); x++){
     curr = (episode) test.get(x);
     for (y = 0; y < curr.getSize(); y++){
       now = (character) curr.getChar(y);
-      now.display();
-      now.inFocus();
+      now.display(start);
+      now.inFocus(start);
     }
-    curr.display();
+    curr.display(start);
+    start += step;
   }
 }
 
@@ -77,8 +93,8 @@ class episode {
     y = 0; 
   }
   
-  void display(){
-    rect(x, y, 3, 30); 
+  void display(int startX){
+    rect(startX, y, 3, 30); 
   }
   
   void showText(){
@@ -125,14 +141,15 @@ class character{
    }
  
  //used to draw the square on the line
- void display(){
+ void display(int Xlocation){
    fill(R, G, B);
-   rect(((width/2.0) - 2.5), ((height/2.0) - (onScreen * 4)), 5, 5);
+   rect(Xlocation, ((height/2.0) - (onScreen * 4)), 5, 5);
  }
  
- void inFocus(){
+ void inFocus(int xLocation){
    //display the name, time on screen, and longest scene if in the box
-   if (mouseX >= ((width/2.0) - 2.5) && mouseX <= ((width/2.0) + 2.5) && mouseY >= (((height/2.0) - (onScreen * 4)) - 5) && mouseY <= (((height/2.0) - (onScreen * 4)) + 5)){
+   //if (mouseX >= ((width/2.0) - 2.5) && mouseX <= ((width/2.0) + 2.5) && mouseY >= (((height/2.0) - (onScreen * 4)) - 5) && mouseY <= (((height/2.0) - (onScreen * 4)) + 5)){
+   if (mouseX >= (xLocation - 2.5) && mouseX <= (xLocation + 2.5) && mouseY >= (((height/2.0) - (onScreen * 4)) - 5) && mouseY <= (((height/2.0) - (onScreen * 4)) + 5)){  
      println(name);
      updateText();
    }
