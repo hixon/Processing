@@ -15,7 +15,12 @@ WORKING ON:
 		just to see if i can get everything working properly	
 
 TODO:
-	- look into good ways to store the data - currently going to store everything in an Episode ArrayList and break apart as necessary
+	- look into good ways to store the data - currently going to store everything in an Episode ArrayList and break apart as necessary.
+		UPDATE - thinking of storing all the data into a class called AllData or something and keeping the arrayList of episodes and characters inside of that. Just need to find out a good way 
+			load everything from the csv file. Currently just loading everything using the LoadTable function into a table and then from there i'll populate the correct fields through 
+			looping. need to test this idea. first I'll populate some character information and then i'll do some episode information and finally i'll put that all together into 
+			on instance of the AllData class so that it's modularized pretty good and easy to change things, the only downfall is that i think i'll have to hardcode the locations in the 
+			csv file to the character information and also the episode information. might have to look into dynamic ways to load the information but i dont know how beinficial that would be.
 	- how to display each episode as a line but around the center circle, need to do some trig for this - still need to figure out
 	- how to display two characters who overlap in their time on the screen - still need to figure out
 	- need to think of a good way to read in the data - thinking of using a .csv file with all the info 
