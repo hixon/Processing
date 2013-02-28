@@ -24,7 +24,7 @@ void draw(){
   
   ArrayList test = new ArrayList();
   
-  for (int x = 1; x < 180; x++){
+  for (int x = 1; x < 12; x++){
     ArrayList people = new ArrayList();
     character Jer = new character ("Jerry", t.getFloat(x,4), t.getFloat(x,5), 255, 0, 0);
     character Grg = new character ("George", t.getFloat(x,6), t.getFloat(x,7), 0, 255, 0);
