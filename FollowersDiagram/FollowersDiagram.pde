@@ -25,6 +25,7 @@ void setup() {
   ids = twitter.getFollowersIDs(cursor);
 
   String name;
+  String screenName;
   //println(ids.getIDs());
   long[] followers = ids.getIDs();
   
@@ -34,8 +35,12 @@ void setup() {
   Object[] test2 = test.toArray();
   //println(test.size());
   //println(test2);
+  User u;
   for(int x = 0; x < test.size() - 1; x++){
-     println("user: " + test.get(x) + "\n"); 
+     //println("user: " + test.get(x) + "\n");
+     name = test.get(x).getName();
+     screenName = test.get(x).getScreenName();
+     println("Username: " + name + " ScreenName: " + screenName);
   }
   }
   catch (TwitterException te) {
