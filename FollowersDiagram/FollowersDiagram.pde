@@ -23,25 +23,38 @@ void setup() {
   String result = twitter.getScreenName();
   IDs ids;
   ids = twitter.getFollowersIDs(cursor);
+  
+  IDs followinglist;
+  followinglist = twitter.getFriendsIDs(cursor);
+  //println(following);
 
   String name;
   String screenName;
   //println(ids.getIDs());
   long[] followers = ids.getIDs();
+  long[] followings = followinglist.getIDs();
   
   //println(followers.length);
   //println(twitter.lookupUsers(followers));
-  ResponseList<User> test = twitter.lookupUsers(followers);
-  Object[] test2 = test.toArray();
+  ResponseList<User> follows = twitter.lookupUsers(followers);
+  ResponseList<User> following = twitter.lookupUsers(followings);
+  
+  //Object[] test2 = test.toArray();
   //println(test.size());
   //println(test2);
   User u;
-  for(int x = 0; x < test.size() - 1; x++){
+  for(int x = 0; x < follows.size() - 1; x++){
      //println("user: " + test.get(x) + "\n");
-     name = test.get(x).getName();
-     screenName = test.get(x).getScreenName();
+     name = follows.get(x).getName();
+     screenName = follows.get(x).getScreenName();
      println("Username: " + name + " ScreenName: " + screenName);
   }
+  println("\n");
+  for(int y = 0; y < following.size() - 1; y++){
+    name = following.get(y).getName();
+    screenName = following.get(y).getScreenName();
+    println("Following: " + name + " ScreenName: " + screenName); 
+  } 
   }
   catch (TwitterException te) {
     println("Couldn't connect: " + te);
