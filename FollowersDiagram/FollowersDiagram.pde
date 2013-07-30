@@ -12,7 +12,7 @@ void setup() {
   ConfigurationBuilder cb = new ConfigurationBuilder();
   cb.setOAuthConsumerKey("");
   cb.setOAuthConsumerSecret("");
-  cb.setOAuthAccessToken("");
+  cb.setOAuthAccessToken("-");
   cb.setOAuthAccessTokenSecret("");
  
   TwitterFactory tf = new TwitterFactory(cb.build());
@@ -23,9 +23,19 @@ void setup() {
   String result = twitter.getScreenName();
   IDs ids;
   ids = twitter.getFollowersIDs(cursor);
-  int x = 0;
-  while (ids.hasNext()){
-    println(ids.getIDs());
+
+  String name;
+  //println(ids.getIDs());
+  long[] followers = ids.getIDs();
+  
+  //println(followers.length);
+  //println(twitter.lookupUsers(followers));
+  ResponseList<User> test = twitter.lookupUsers(followers);
+  Object[] test2 = test.toArray();
+  //println(test.size());
+  //println(test2);
+  for(int x = 0; x < test.size() - 1; x++){
+     println("user: " + test.get(x) + "\n"); 
   }
   }
   catch (TwitterException te) {
