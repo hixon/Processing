@@ -1,6 +1,5 @@
-//Build an ArrayList to hold all of the words that we get from the imported tweets
-ArrayList<Long> followers = new ArrayList();
- 
+ArrayList<String> followBack = new ArrayList();
+ArrayList<String> noFollowBack = new ArrayList();
 void setup() {
   //Set the size of the stage, and the background to black.
   size(550,550);
@@ -8,7 +7,6 @@ void setup() {
   smooth();
   
   //UPDATE THE CREDENTIALS WITH MY KEYS BEFORE RUNNING
-  //Credentials
   ConfigurationBuilder cb = new ConfigurationBuilder();
   cb.setOAuthConsumerKey("");
   cb.setOAuthConsumerSecret("");
@@ -30,31 +28,29 @@ void setup() {
 
   String name;
   String screenName;
-  //println(ids.getIDs());
   long[] followers = ids.getIDs();
   long[] followings = followinglist.getIDs();
-  
-  //println(followers.length);
-  //println(twitter.lookupUsers(followers));
+ 
   ResponseList<User> follows = twitter.lookupUsers(followers);
   ResponseList<User> following = twitter.lookupUsers(followings);
-  
-  //Object[] test2 = test.toArray();
-  //println(test.size());
-  //println(test2);
   User u;
-  for(int x = 0; x < follows.size() - 1; x++){
-     //println("user: " + test.get(x) + "\n");
-     name = follows.get(x).getName();
-     screenName = follows.get(x).getScreenName();
-     println("Username: " + name + " ScreenName: " + screenName);
+  
+  //loop through the people that you follow and and see if theyre in the list of people that follow you
+  // do something for each
+  
+  for (int z = 0; z < following.size() -1; z++){
+    name = following.get(z).getScreenName();
+    if (follows.contains(following.get(z))){ 
+     followBack.add(name);
+    }
+    else{
+     noFollowBack.add(name);
+    }
   }
-  println("\n");
-  for(int y = 0; y < following.size() - 1; y++){
-    name = following.get(y).getName();
-    screenName = following.get(y).getScreenName();
-    println("Following: " + name + " ScreenName: " + screenName); 
-  } 
+  
+  //print results
+  println("The following people follow you back: " + followBack + "\n\n");
+  println("These turds dont follow you back: " + noFollowBack);
   }
   catch (TwitterException te) {
     println("Couldn't connect: " + te);
