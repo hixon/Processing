@@ -27,6 +27,19 @@ void setup() {
   try {
   String result = twitter.getScreenName();
   IDs ids;
+ 
+ /*do {
+  if (0 < args.length) {
+    ids = twitter.getFollowersIDs(person, cursor);
+  } 
+  else {
+    ids = twitter.getFollowersIDs(cursor);
+  }
+  for (long id : ids.getIDs()) {
+    System.out.println(id);
+  }
+} while ((cursor = ids.getNextCursor()) != 0);
+*/
   ids = twitter.getFollowersIDs(person, cursor);
   
   IDs followinglist;
