@@ -2,9 +2,12 @@ ArrayList<String> followBack = new ArrayList();
 ArrayList<String> noFollowBack = new ArrayList();
 void setup() {
   //Set the size of the stage, and the background to black.
-  size(550,550);
-  background(0);
+  size(500,500);
+  background(255);
   smooth();
+  
+  //no need to have the @ symbol on the beginning of the name
+  String person = "ryan_hixon";
   
   //these are used in case you follow more than 100 people or are followed by more than 100 people
   int numFollowers = 0;
@@ -24,10 +27,10 @@ void setup() {
   try {
   String result = twitter.getScreenName();
   IDs ids;
-  ids = twitter.getFollowersIDs(cursor);
+  ids = twitter.getFollowersIDs(person, cursor);
   
   IDs followinglist;
-  followinglist = twitter.getFriendsIDs(cursor);
+  followinglist = twitter.getFriendsIDs(person, cursor);
   //println(following);
 
   String name;
@@ -64,7 +67,9 @@ void setup() {
   catch (TwitterException te) {
     println("Couldn't connect: " + te);
   }
-  
+  fill(255);
+  stroke(0);
+  rect(125, 125, 250, 250);
   //people that dont follow you back
   int start = 10;
   int wid = 0;
@@ -81,12 +86,12 @@ void setup() {
   }
   
   //people that follow you back
-  start = 10;
-  wid = width-150;
+  start = 140;
+  wid = width-235;
   for (int w = 0; w < followBack.size(); w++){
-    if (start > height){
-      wid += 150;
-      start = 10;
+    if (start > 375){
+      wid -= 135;
+      start = 140;
     }
     else{
       fill(0, 150, 0);
