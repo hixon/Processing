@@ -12,3 +12,13 @@ Flow of the code:
 	- if a person is in both lists then they follow that person back display them inside of the circle
 	- if a person is in the followers list but not in the friends list display them outside of the circle
 	- possibly show some information when the user hovers over each person?
+
+
+Idea to look up any user given their screen name:
+	- input name as String
+	- use the UserResources.showUser(String) function which will return a User object
+	- use the User.getID() function for that user to get the id to search everything else
+	- long[] following = FriendsFollowersResources.getFollowersIDs(userID, cursor)
+	- long[] follows = FriendsFollowersResources.getFriendsIDs(userID, cursor)
+	- cross reference the two and display the results accordingly
+	- also need a way to start the program from the beginning when theyre finished looking. 
