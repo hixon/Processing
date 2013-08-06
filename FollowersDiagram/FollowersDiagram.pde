@@ -2,8 +2,8 @@ ArrayList<String> followBack = new ArrayList();
 ArrayList<String> noFollowBack = new ArrayList();
 void setup() {
   //Set the size of the stage, and the background to black.
-  size(500,500);
-  background(255);
+  size(500,510);
+  background(150);
   smooth();
   
   //no need to have the @ symbol on the beginning of the name
@@ -67,14 +67,14 @@ void setup() {
   catch (TwitterException te) {
     println("Couldn't connect: " + te);
   }
-  fill(255);
+  fill(190);
   stroke(0);
   rect(125, 125, 250, 250);
   //people that dont follow you back
-  int start = 10;
+  int start = 15;
   int wid = 0;
   for (int w = 0; w < noFollowBack.size(); w++){
-    if (start > height){
+    if (start > height-10){
       wid += 150;
       start = 10;
     }
